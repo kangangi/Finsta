@@ -55,3 +55,54 @@ class ImageTestClas(TestCase):
         self.sun.save_image()
         self.sun.update_caption('Yellow')
         self.assertEqual(self.sun.caption, 'Yellow')
+
+class CommentTestClas(TestCase):
+    '''
+    Class that tests the images
+    '''
+    def setUp(self):
+        '''
+        Creates new instances before a test
+        '''
+        self.diana = User(username = "diana", email = "diana@gmail.com",password = "12345678")
+        self.sun = Image(image = 'imageurl', name ='sun', caption = 'It is bright', profile = self.diana, likes=0)
+        self.comment = Comment(image=self.sun, content= 'Beautiful', user = self.diana)
+
+        self.diana.save()
+        self.sun.save_image()
+        self.comment.save_comment()
+
+    def tearDown(self):
+        '''
+        Clears database after each test
+        '''
+        Image.objects.all().delete()
+        Comment.objects.all().delete()
+
+    def test_comment_instance(self):
+        '''
+        This will test whether the new comment created is an instance of the Comment class
+        '''
+        self.assertTrue(isinstance(self.comment, Comment))
+
+    def test_save_comment_method(self):
+        '''
+        This tests whether new comment is added to the db 
+        '''
+        self.comment.save_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments)> 0)
+
+    def test_delete_image(self):
+        '''
+        This tests whether comment is deleted
+        '''
+        self.comment.save_comment()
+        comments1 = Comment.objects.all()
+        self.assertEqual(len(comments1),1)
+        self.comment.delete_comment()
+        comments2 = Comment.objects.all()
+        self.assertEqual(len(comments2),0)
+
+    
+     
