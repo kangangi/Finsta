@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 class Image(models.Model):
     '''
     Class that defines the image objects
     '''
-    image = models.ImageField(upload_to = 'insta/')
+    image = CloudinaryField('image')
     name = models.CharField(max_length = 30)
     caption = models.TextField(blank= True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -21,7 +22,7 @@ class Profile(models.Model):
     Class that defines the profile objects
     '''
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    profile_pic = models.ImageField(upload_to = 'insta/', blank = True)
+    profile_pic = CloudinaryField('image')
     bio =  models.TextField(blank=True)
 
     def __str__(self):
