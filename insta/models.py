@@ -17,6 +17,16 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    def update_caption(self, new_caption):
+        self.caption = new_caption
+        self.save()
+
 class Profile(models.Model):
     '''
     Class that defines the profile objects
@@ -27,6 +37,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user
+
+    
 
 class Comment(models.Model):
     '''
