@@ -42,23 +42,23 @@ class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio =  models.TextField(blank=True)
 
-    def __repr__(self):
-        return self.user
-
-    @receiver(post_save, sender = User)
-    def create_profile(sender, instance,created, **kwargs):
-        if created:
-            Profile.objects.create(user = instance)
-
-    @receiver(post_save,sender = User)
-    def save_profile( sender, instance, **kwargs):
-        instance.profile.save()
+    def __str__(self):
+        return self.user.username
 
     @classmethod
     def search_user(cls,username):
-        return User.objects.filter(username__icontains =username)
+        #searched_user = User.objects.filter(username__icontains = username ) 
+        return User.objects.filter(username__icontains = username)
 
 
+@receiver(post_save, sender = User)
+def create_profile(sender, instance,created, **kwargs):
+     if created:
+        Profile.objects.create(user = instance)
+
+@receiver(post_save,sender = User)
+def save_profile( sender, instance, **kwargs):
+    instance.profile.save()
 
     
 

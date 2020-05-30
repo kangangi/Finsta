@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    {% if profile %}
+    {% for prof in profile %}
+    <a href="{%url 'search_profile' prof.id %}"><h4>{{prof.username}}</h4></a>
+    {% endfor %}
+    {% else %}
+    <p>No user like dat exists</p>
+    {% endif %}
+</div>
+{% endblock %}
