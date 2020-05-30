@@ -54,6 +54,10 @@ class Profile(models.Model):
     def save_profile( sender, instance, **kwargs):
         instance.profile.save()
 
+    @classmethod
+    def search_user(cls,username):
+        return User.objects.filter(username__icontains =username)
+
 
 
     

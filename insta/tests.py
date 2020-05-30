@@ -65,6 +65,9 @@ class ImageTestClas(TestCase):
         profile_image = Image.get_profile_images(self.diana)
         self.assertEqual(len(profile_image),1 )
 
+    
+
+
 class CommentTestClas(TestCase):
     '''
     Class that tests the images
@@ -112,6 +115,40 @@ class CommentTestClas(TestCase):
         self.comment.delete_comment()
         comments2 = Comment.objects.all()
         self.assertEqual(len(comments2),0)
+
+class ProfileTestClas(TestCase):
+    '''
+    Class that tests the profile
+    '''
+    def setUp(self):
+        '''
+        Creates new instances before a test
+        '''
+        self.diana = User(username = "diana", email = "diana@gmail.com",password = "12345678")
+        self.diana.save()
+        
+        
+
+    def tearDown(self):
+        '''
+        Clears database after each test
+        '''
+        Profile.objects.all().delete()
+        User.objects.all().delete()
+     
+    def test_image_instance(self):
+        '''
+        This will test whether the new image created is an instance of the Image class
+        '''
+        self.assertTrue(isinstance(self.diana.profile , Profile))
+
+    def test_search_user(self):
+        '''
+        This tests whether search method is functioning well
+        '''
+        self.diana.save()
+        user = Profile.search_user(self.diana)
+        self.assertEqual(len(user), 1)
 
     
      
