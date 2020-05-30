@@ -13,8 +13,9 @@ def home(request):
     Displays home page
     '''
     title = "Finsta"
+    images = Image.objects.all()
     
-    return render(request, "home.html")
+    return render(request, "home.html", {"images": images})
 
 
 def profile(request):

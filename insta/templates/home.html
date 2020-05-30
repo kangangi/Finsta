@@ -3,5 +3,10 @@
 
 <div class= "container">
     <h1>FINSTA</h1>
+    {% for image in images %}
+    <img src="{{image.image.url}}" alt="">
+    <p>{{image.name}}</p>
+    <p>{{image.caption}}</p>
+    {% endfor %}
 </div>
 {% endblock%}
