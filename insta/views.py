@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Image, Profile, Comment
-from .forms import AddImageForm
+from .forms import AddImageForm, AddCommentForm
 
 
 
@@ -63,3 +63,19 @@ def search_profile(request, user):
     profile = Profile.objects.get(user =user)
     images = Image.get_profile_images(user)
     return render(request, 'search_profile.html', {"profile" : profile, "images":images} )
+
+
+def add_comment(request,id):
+    '''
+    Add new comments 
+    '''
+    image = Image.objects.get(pk=id)
+    content= request.GET.get("comment")
+    print(content)
+    user = request.user
+    comment = Comment( image = image, content = content, user = user)
+    comment.save_comment()
+
+    return redirect('home')
+
+

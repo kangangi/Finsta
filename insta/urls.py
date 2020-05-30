@@ -8,8 +8,6 @@ urlpatterns = [
     path('profile/',views.profile, name = "profile"),
     path('upload/image/', views.upload_image, name = "upload_image"),
     path('search/', views.user_search, name = "user_search"),
-    path('search/<user>', views.search_profile, name = "search_profile")
+    path('search/<user>', views.search_profile, name = "search_profile"),
+    path('comment/<int:id>', views.add_comment,name = "add_comment" )
 ]
-
-# if settings.DEBUG:
-#     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

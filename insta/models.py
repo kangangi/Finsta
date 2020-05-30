@@ -80,3 +80,7 @@ class Comment(models.Model):
     def delete_comment(self):
         self.delete()
 
+    @classmethod
+    def get_image_comments(cls,image):
+        return cls.objects.filter(image = image)
+

@@ -1,12 +1,22 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div class= "container">
-    
+<div class="container">
+
     {% for image in images %}
     <img src="{{image.image.url}}" alt="">
     <p>{{image.name}}</p>
     <p>{{image.caption}}</p>
+
+    <form class="navbar-form" role="add_comment" , action="{% url 'add_comment' image.id %}">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Comment" name="comment">
+            <div class="input-group-btn">
+                <button class="btn btn-outline-info" type="submit"> Post</button>
+
+            </div>
+        </div>
+    </form>
     {% endfor %}
 </div>
 {% endblock%}

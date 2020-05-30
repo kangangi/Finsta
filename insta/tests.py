@@ -116,6 +116,14 @@ class CommentTestClas(TestCase):
         comments2 = Comment.objects.all()
         self.assertEqual(len(comments2),0)
 
+    def test_get_image_comments(self):
+        '''
+        This tests whether comments can be obtained by image id
+        '''
+        comments = Comment.get_image_comments(self.sun)
+        self.assertTrue(len(comments) > 0)
+    
+
 class ProfileTestClas(TestCase):
     '''
     Class that tests the profile
@@ -126,7 +134,6 @@ class ProfileTestClas(TestCase):
         '''
         self.diana = User(username = "diana", email = "diana@gmail.com",password = "12345678")
         self.diana.save()
-        
         
 
     def tearDown(self):
