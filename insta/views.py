@@ -25,7 +25,8 @@ def profile(request):
     title = "Profile"
     current_user = request.user
     profile = Profile.objects.get(user =current_user)
-    return render(request, 'profile.html', {"profile" : profile})
+    images = Image.get_profile_images(current_user)
+    return render(request, 'profile.html', {"profile" : profile, "images":images} )
 
 @login_required
 def upload_image(request):

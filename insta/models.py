@@ -29,6 +29,11 @@ class Image(models.Model):
         self.caption = new_caption
         self.save()
 
+    @classmethod
+    def get_profile_images(cls,profile):
+        return cls.objects.filter(profile = profile)
+
+
 class Profile(models.Model):
     '''
     Class that defines the profile objects

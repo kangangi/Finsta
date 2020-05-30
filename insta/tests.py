@@ -56,6 +56,15 @@ class ImageTestClas(TestCase):
         self.sun.update_caption('Yellow')
         self.assertEqual(self.sun.caption, 'Yellow')
 
+    def test_get_profile_image_(self):
+        '''
+        This tests whether images for profiles are retrieved
+        '''
+        self.sun.save_image
+        self.diana.save()
+        profile_image = Image.get_profile_images(self.diana)
+        self.assertEqual(len(profile_image),1 )
+
 class CommentTestClas(TestCase):
     '''
     Class that tests the images
@@ -93,7 +102,7 @@ class CommentTestClas(TestCase):
         comments = Comment.objects.all()
         self.assertTrue(len(comments)> 0)
 
-    def test_delete_image(self):
+    def test_delete_comment(self):
         '''
         This tests whether comment is deleted
         '''

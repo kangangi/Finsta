@@ -4,4 +4,11 @@
 <h1>{{profile.user}}</h1>
 <p>{{profile.bio}}</p>
 <img src="{{profile.profile_pic.url}}" alt="">
+
+<h2>Images</h2>
+{% for image in images %}
+    <img src="{{image.image.url}}" alt="">
+    <p>{{image.name}}</p>
+    <p>{{image.caption}}</p>
+    {% endfor %}
 {% endblock%}
