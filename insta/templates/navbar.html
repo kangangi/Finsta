@@ -26,6 +26,9 @@
                     <a class="nav-link" href="/accounts/password/change">Change Password</a>
                   </li>
                   <li>
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                  </li>
+                  <li>
                     <a class="nav-link" href="/accounts/logout">Logout</a>
                   </li>
 
@@ -34,9 +37,6 @@
             <li>
               <a class="nav-link" href="/accounts/login">Login</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin"> Admin</a>
-          </li>
             {% endif %}
 
     </nav>
