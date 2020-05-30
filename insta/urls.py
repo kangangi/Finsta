@@ -5,7 +5,8 @@ from . import views
 
 urlpatterns = [
     path('',views.home , name = "home"),
-    path('profile/',views.profile, name = "profile")
+    path('profile/',views.profile, name = "profile"),
+    path('upload/image/', views.upload_image, name = "upload_image")
 ]
 
 # if settings.DEBUG:
