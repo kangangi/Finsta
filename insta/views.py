@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Image, Profile, Comment
-from .forms import AddImageForm, AddCommentForm
+from .forms import AddImageForm,AddProfpicForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -107,6 +107,23 @@ def image_details(request,id):
     if image.likes.filter(id =request.user.id).exists():
         liked = True
 
-
-
     return render(request, 'image_details.html',{"image": image, "total_likes": total_likes, "comments": comments ,"liked" : liked})
+
+def edit_profile(request):
+    current_user = request.user
+
+    if request.method == "POST":
+        form = AddProfpicForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile_pic = form.cleaned_data['profile_pic']
+            bio  = form.cleaned_data['bio']
+
+            updated_profile = Profile.objects.get(user= current_user)
+            updated_profile.profile_pic = profile_pic
+            updated_profile.bio = bio
+            updated_profile.save()
+        return redirect('profile')
+    else:
+        form = AddProfpicForm()
+    return render(request, 'edit_profile.html', {"form": form})
+

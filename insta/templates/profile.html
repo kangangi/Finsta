@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>{{profile.user}}</h1>
+<a href="{% url 'edit_profile' %}">Edit</a>
 <p>{{profile.bio}}</p>
 <img src="{{profile.profile_pic.url}}" alt="">
 
@@ -10,7 +11,7 @@
 <a href="{% url 'image_details' image.id%}"><img src="{{image.image.url}}" alt=""></a>
     <p>{{image.name}}</p>
     <p>{{image.caption}}</p>
-    <form class="navbar-form" role="add_comment" , action="{% url 'add_comment' image.id %}">
+    <form role="add_comment" , action="{% url 'add_comment' image.id %}">
         {% csrf_token%}
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Comment" name="comment">
