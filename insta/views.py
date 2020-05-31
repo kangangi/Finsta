@@ -16,6 +16,7 @@ def home(request):
     '''
     title = "Finsta"
     images = Image.objects.all()
+
     
     return render(request, "home.html", {"images": images})
 
@@ -82,8 +83,20 @@ def add_comment(request,id):
 
 def like_image(request,id):
     image = Image.objects.get(pk=id)
+    # liked = False
+    # if image.likes.filter(id=request.user.id).exists():
+    #     image.likes.remove(request.user)
+    #     liked = False
+    # else:
     image.likes.add(request.user)
-
+        # liked = True 
     return HttpResponseRedirect(reverse('home'))
 
 
+def image_details(request,id):
+    image = Image.objects.get(pk=id)
+
+    total_likes = image.like_count()
+    comments = Comment.get_image_comments(image)
+
+    return render(request, 'image_details.html',{"image": image, "total_likes": total_likes, "comments": comments})

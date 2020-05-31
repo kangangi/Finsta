@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class ="container">
+
+
+<img src="{{image.image.url}}" alt="">
+ <p>{{image.name}}</p>
+<p>{{image.caption}}</p>
+
+<p> Likes : {{total_likes}}</p> 
+{% for comment in comments %}
+<p>{{comment.content}}</p>
+<p>By :{{comment.user}}</p>
+<p>posted {{comment.pub_date | timesince}} ago </p>
+{% endfor %}
+</div>
+{%endblock%}

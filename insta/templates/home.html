@@ -4,7 +4,7 @@
 <div class="container">
 
     {% for image in images %}
-    <img src="{{image.image.url}}" alt="">
+    <a href="{% url 'image_details' image.id%}"><img src="{{image.image.url}}" alt=""></a>
     <p>{{image.name}}</p>
     <p>{{image.caption}}</p>
 
