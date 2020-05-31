@@ -8,41 +8,14 @@
 
 <body>
   <nav class="navbar navbar-expand-lg sticky-top navbar-light " style="background-color:white">
-    <a class="navbar-brand" href="{% url 'home' %}">Finsta</a>
+    <a class=" navbar-brand" style="color: #C03221; ;" href="{% url 'home' %}">Finsta-gram</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul id="navbar-list" class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="/admin"> Admin</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/accounts/password/change">Change Password</a>
-        </li>
-        <li>
-          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-        </li>
-        <li>
-          <a class="nav-link" href="{% url 'upload_image' %}">Upload Image</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/accounts/logout">Logout</a>
-        </li>
-
-      </ul>
-      {% else %}
-      <li>
-        <a class="nav-link" href="/accounts/login">Login</a>
-      </li>
-      {% endif %}
-      <div class="col-sm-4 col-md-4 navbar-right">
+      <div class="mx-auto col-sm-4 col-md-4>">
         <form class="navbar-form" role="search" , action="{% url 'user_search' %}">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search User" name="user">
@@ -53,6 +26,31 @@
           </div>
         </form>
       </div>
+      <ul id="navbar-list" class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home" aria-hidden="true"></i> <span
+              class="sr-only">(current)</span></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="nav-link" href="{% url 'upload_image' %}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+            <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
+            <a class="dropdown-item" href="/admin"> Admin</a>
+            <a class="dropdown-item" href=/accounts/logout/>Logout</a>
+
+          </div>
+        </li>
+        {% endif %}
+
+
 
   </nav>
 </body>

@@ -1,14 +1,40 @@
 {% extends 'base.html'%}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {% if profile.profile_pic %}
+            <img style="width:200px; height:200px;object-fit: cover; margin-right: 10px; border-radius: 50%; "
+                src="{{profile.profile_pic.url}}" alt="">
+            {% else %}
+            <img style="width:200px; height:200px;object-fit: cover;border-radius: 50%;" src="../../media/images/avartar.png" alt="">
+            {% endif %}
+            <br>
+        </div>
+        <div class="col-md-9">
+            <h1>{{profile.user}}</h1>
+            <h4>About</h4>
+            {% if profile.bio%}
+            <p>{{profile.bio}}</p>
+            {% else %}
+            <p>Hey there, I am an Finsta-gram user User</p>
+            {% endif %}
+        </div>
+    </div>
 
-<h1>{{profile.user}}</h1>
-<p>{{profile.bio}}</p>
-<img src="{{profile.profile_pic.url}}" alt="">
-
-<h2>Images</h2>
-{% for image in images %}
-    <img src="{{image.image.url}}" alt="">
-    <p>{{image.name}}</p>
-    <p>{{image.caption}}</p>
-    {% endfor %}
-{% endblock%}
+    <hr>
+    <div id="image-list">
+        {% if images %}
+        {% for image in images %}
+        <div class="col-xs-6 col-md-4 col-sm-6 col-lg-4">
+            <a href="{% url 'image_details' image.id%}"><img class="image img-responsive"
+                    style="width:350px; height:350px;object-fit: cover;padding:10px;" src="{{image.image.url}}"
+                    alt=""></a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class= "text-center">No images posted yet</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

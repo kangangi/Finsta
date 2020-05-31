@@ -1,0 +1,33 @@
+.navbar-brand{
+    font-family: 'Chelsea Market', cursive;  
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+
+.navbar-list{
+    font-size: 40px;
+}
+
+#image-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body{
+    background-color: white;
+    font-family: 'Reem Kufi', sans-serif;
+    color: black;
+    font-size : 25px;
+}
+h1{
+    font-family: 'Chelsea Market', cursive;  
+    font-size: 40px;
+    font-weight: bold;
+    color: #C03221;
+}
+.profile{
+    margin: 0 auto;
+    
+}

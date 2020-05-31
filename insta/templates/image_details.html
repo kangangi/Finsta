@@ -1,30 +1,65 @@
 {% extends 'base.html'%}
 {% block content %}
-<div class ="container">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
 
-<img src="{{image.image.url}}" alt="">
- <p>{{image.name}}</p>
-<p>{{image.caption}}</p>
-{% if liked %}
-<form action ="{% url 'like_image' image.id %}" method = "POST">
-    {% csrf_token %}
-    <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-danger btn-sm"> Unlike</button>
-</form>
-{% else %}
-<form action ="{% url 'like_image' image.id %}" method = "POST">
-    {% csrf_token %}
-    <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-info btn-sm" > Like</button>
-</form>
-{% endif %}
+            <div class="card" style="width:500px;">
+                <img class="card-img-top"
+                    style="width:500px; height:500px;object-fit: cover;border: 5px solid black;padding: 10px;"
+                    src="{{image.image.url}}" alt="">
+                <br><br>
+                <div class=" card-footer">
+                    <form role="add_comment" , action="{% url 'add_comment' image.id %}">
+                        {% csrf_token%}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Comment" name="comment">
+                            <div class="input-group-btn">
+                                <button class="btn btn-outline-info" type="submit"> Post</button>
 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2> {{image.profile}} </h2>
+            <hr>
+            <p>{{image.caption}}</p>
+            
+                    {% if liked %}
+                    <form action="{% url 'like_image' image.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="image_id" value={{image.id}} class="btn btn-danger btn-sm">
+                            Unlike</button>
+                    </form>
+                    {% else %}
 
+                    <form action="{% url 'like_image' image.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="image_id" value={{image.id}} class="btn btn-success btn-sm" ">
+                            Like </button>
 
+                    </form>
+                    {% endif %}
+                
+                    <p> {{total_likes}} likes  </p>
+            
+            <hr>
 
-<p> Likes : {{total_likes}}</p> 
-{% for comment in comments %}
-<p>{{comment.content}}</p>
-<p>By :{{comment.user}}</p>
-<p>posted {{comment.pub_date | timesince}} ago </p>
-{% endfor %}
+            <h4>Comments</h4>
+            {% for comment in comments %}
+            <h6 style="font-size: 20px; color: darkgreen;"><i class="fa fa-user" aria-hidden="true">
+                    {{comment.user}}</i></h6>
+            <p>{{comment.content}}</p>
+
+            <p class="text-muted" style="font-size: 10px;">posted {{comment.pub_date | timesince}} ago </p>
+            <hr>
+            {% endfor %}
+
+        </div>
+    </div>
+
 </div>
 {%endblock%}

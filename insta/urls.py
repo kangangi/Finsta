@@ -14,3 +14,6 @@ urlpatterns = [
     path('image/details/<int:id>', views.image_details, name = 'image_details'),
     path('profile/edit', views.edit_profile,name = 'edit_profile')
 ]
+
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

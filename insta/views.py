@@ -15,7 +15,8 @@ def home(request):
     Displays home page
     '''
     title = "Finsta"
-    images = Image.objects.all()
+    images = Image.objects.all().order_by("-pub_date")
+
 
     
     return render(request, "home.html", {"images": images})
@@ -79,7 +80,7 @@ def add_comment(request,id):
     comment = Comment( image = image, content = content, user = user)
     comment.save_comment()
 
-    return redirect('home')
+    return HttpResponseRedirect(reverse('image_details',args =[int(image.id)]))
 
 def like_image(request,id):
     '''

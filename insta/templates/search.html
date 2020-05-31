@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     {% if profile %}
     {% for prof in profile %}
-    <a href="{%url 'search_profile' prof.id %}"><h4>{{prof.username}}</h4></a>
+    <div class ="profile" >
+    <h6 style="font-size: 25px;"><i class="fa fa-user" aria-hidden="true">
+        {{prof.username}}</i></h6>
+    <br>
+    <a href="{%url 'search_profile' prof.id %}"><h4>View profile</h4></a>
+    <hr>
+    </div>
     {% endfor %}
     {% else %}
     <p>No user like that exists</p>

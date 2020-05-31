@@ -2,28 +2,25 @@
 {% block content %}
 
 <div class="container">
-
     {% for image in images %}
-    <a href="{% url 'image_details' image.id%}"><img src="{{image.image.url}}" alt=""></a>
-    <p>{{image.name}}</p>
-    <p>{{image.caption}}</p>
+    <div class="card" style="width:600px;display: flex;
+    margin: 0 auto;">
+        <div class="card-header">{{image.profile}}</div>
+        <a href="{% url 'image_details' image.id%}"><img class="card-img-top"
+                style="width:600px; height:400px;object-fit: cover" src="{{image.image.url}}" alt=""></a>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted""> posted {{image.pub_date | timesince }} ago</h6>
+            <p class=card-text>{{image.profile}}: {{image.caption}}</p>
 
-    <form role="add_comment" , action="{% url 'add_comment' image.id %}">
-        {% csrf_token%}
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Comment" name="comment">
-            <div class="input-group-btn">
-                <button class="btn btn-outline-info" type="submit"> Post</button>
 
-            </div>
-        </div>
-    </form>
-    <br/>
-    <!-- <form action ="{% url 'like_image' image.id %}" method = "POST">
-        {% csrf_token %}
-        <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-info btn-sm" > Like</button>
-    </form> -->
-
-    {% endfor %}
+            
+    </div>
 </div>
+
+<br><br>
+
+
+{% endfor %}
+</div>
+
 {% endblock%}
