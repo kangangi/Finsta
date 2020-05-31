@@ -9,6 +9,7 @@
     <p>{{image.caption}}</p>
 
     <form class="navbar-form" role="add_comment" , action="{% url 'add_comment' image.id %}">
+        {% csrf_token%}
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Comment" name="comment">
             <div class="input-group-btn">
@@ -17,6 +18,13 @@
             </div>
         </div>
     </form>
+    <hr>
+    <br/>
+    <form action ="{% url 'like_image' image.id %}" method = "POST">
+        {% csrf_token %}
+        <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-info btn-sm" > Like</button>
+    </form>
+
     {% endfor %}
 </div>
 {% endblock%}

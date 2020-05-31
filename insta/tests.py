@@ -12,7 +12,7 @@ class ImageTestClas(TestCase):
         Creates new instances before a test
         '''
         self.diana = User(username = "diana", email = "diana@gmail.com",password = "12345678")
-        self.sun = Image(image = 'imageurl', name ='sun', caption = 'It is bright', profile = self.diana, likes=0)
+        self.sun = Image(image = 'imageurl', name ='sun', caption = 'It is bright', profile = self.diana)
 
         self.diana.save()
         self.sun.save_image()
@@ -77,7 +77,7 @@ class CommentTestClas(TestCase):
         Creates new instances before a test
         '''
         self.diana = User(username = "diana", email = "diana@gmail.com",password = "12345678")
-        self.sun = Image(image = 'imageurl', name ='sun', caption = 'It is bright', profile = self.diana, likes=0)
+        self.sun = Image(image = 'imageurl', name ='sun', caption = 'It is bright', profile = self.diana)
         self.comment = Comment(image=self.sun, content= 'Beautiful', user = self.diana)
 
         self.diana.save()

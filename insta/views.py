@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Image, Profile, Comment
 from .forms import AddImageForm, AddCommentForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 
@@ -77,5 +79,11 @@ def add_comment(request,id):
     comment.save_comment()
 
     return redirect('home')
+
+def like_image(request,id):
+    image = Image.objects.get(pk=id)
+    image.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('home'))
 
 

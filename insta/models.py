@@ -13,7 +13,7 @@ class Image(models.Model):
     caption = models.TextField(blank= True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add = True)
-    likes = models.IntegerField(default= 0)
+    likes = models.ManyToManyField(User, related_name="posts")
 
 
     def __str__(self):
@@ -29,9 +29,14 @@ class Image(models.Model):
         self.caption = new_caption
         self.save()
 
+    def like_count(self):
+        return self.likes.count()
+
     @classmethod
     def get_profile_images(cls,profile):
         return cls.objects.filter(profile = profile)
+
+    
 
 
 class Profile(models.Model):
@@ -82,5 +87,5 @@ class Comment(models.Model):
 
     @classmethod
     def get_image_comments(cls,image):
-        return cls.objects.filter(image = image)
+        return cls.objects.filter(image =image)
 
