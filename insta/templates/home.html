@@ -18,12 +18,11 @@
             </div>
         </div>
     </form>
-    <hr>
     <br/>
-    <form action ="{% url 'like_image' image.id %}" method = "POST">
+    <!-- <form action ="{% url 'like_image' image.id %}" method = "POST">
         {% csrf_token %}
         <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-info btn-sm" > Like</button>
-    </form>
+    </form> -->
 
     {% endfor %}
 </div>

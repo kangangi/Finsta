@@ -2,10 +2,23 @@
 {% block content %}
 <div class ="container">
 
-
 <img src="{{image.image.url}}" alt="">
  <p>{{image.name}}</p>
 <p>{{image.caption}}</p>
+{% if liked %}
+<form action ="{% url 'like_image' image.id %}" method = "POST">
+    {% csrf_token %}
+    <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-danger btn-sm"> Unlike</button>
+</form>
+{% else %}
+<form action ="{% url 'like_image' image.id %}" method = "POST">
+    {% csrf_token %}
+    <button type = "submit" name = "image_id" value ={{image.id}} class = "btn btn-info btn-sm" > Like</button>
+</form>
+{% endif %}
+
+
+
 
 <p> Likes : {{total_likes}}</p> 
 {% for comment in comments %}

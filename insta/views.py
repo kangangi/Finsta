@@ -82,21 +82,31 @@ def add_comment(request,id):
     return redirect('home')
 
 def like_image(request,id):
+    '''
+    Adds and removes likes
+    '''
     image = Image.objects.get(pk=id)
-    # liked = False
-    # if image.likes.filter(id=request.user.id).exists():
-    #     image.likes.remove(request.user)
-    #     liked = False
-    # else:
-    image.likes.add(request.user)
-        # liked = True 
-    return HttpResponseRedirect(reverse('home'))
+    liked = False
+    if image.likes.filter(id=request.user.id).exists():
+        image.likes.remove(request.user)
+        liked = False
+    else:
+        image.likes.add(request.user)
+        liked = True 
+    return HttpResponseRedirect(reverse('image_details',args =[int(image.id)]))
 
 
 def image_details(request,id):
+    '''
+    Shows image details 
+    '''
     image = Image.objects.get(pk=id)
-
     total_likes = image.like_count()
     comments = Comment.get_image_comments(image)
+    liked = False
+    if image.likes.filter(id =request.user.id).exists():
+        liked = True
 
-    return render(request, 'image_details.html',{"image": image, "total_likes": total_likes, "comments": comments})
+
+
+    return render(request, 'image_details.html',{"image": image, "total_likes": total_likes, "comments": comments ,"liked" : liked})
