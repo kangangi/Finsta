@@ -16,8 +16,6 @@ def home(request):
     '''
     title = "Finsta"
     images = Image.objects.all().order_by("-pub_date")
-
-
     
     return render(request, "home.html", {"images": images})
 
@@ -34,6 +32,9 @@ def profile(request):
 
 @login_required
 def upload_image(request):
+    '''
+    Enables user to upload image
+    '''
     if request.method == "POST":
         form = AddImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -114,6 +115,9 @@ def image_details(request,id):
     return render(request, 'image_details.html',{"image": image, "total_likes": total_likes, "comments": comments ,"liked" : liked})
 
 def edit_profile(request):
+    '''
+    Edits profile picture and bio
+    '''
     current_user = request.user
 
     if request.method == "POST":
@@ -131,3 +135,17 @@ def edit_profile(request):
         form = AddProfpicForm()
     return render(request, 'edit_profile.html', {"form": form})
 
+
+
+def add_comment_homepage(request,id):
+    '''
+    Add new comments 
+    '''
+    image = Image.objects.get(pk=id)
+    content= request.GET.get("comment")
+    print(content)
+    user = request.user
+    comment = Comment( image = image, content = content, user = user)
+    comment.save_comment()
+
+    return redirect('home')

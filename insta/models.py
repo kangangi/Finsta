@@ -46,8 +46,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     profile_pic = CloudinaryField('image')
     bio =  models.TextField(blank=True)
-    followers = models.ManyToManyField(User, related_name='followers')
-    following = models.ManyToManyField(User, related_name='following')
+    # followers = models.ManyToManyField(User, related_name='followers')
+    # following = models.ManyToManyField(User, related_name='following')
 
     def __str__(self):
         return self.user.username

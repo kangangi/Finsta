@@ -11,9 +11,22 @@
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted""> posted {{image.pub_date | timesince }} ago</h6>
             <p class=card-text>{{image.profile}}: {{image.caption}}</p>
-
+             
+        
 
             
+    </div>
+    <div class=" card-footer">
+        <form role="add_comment" , action="{% url 'add_comment_homepage' image.id %}">
+            {% csrf_token%}
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Comment" name="comment">
+                <div class="input-group-btn">
+                    <button class="btn btn-outline-info" type="submit"> Post</button>
+
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
