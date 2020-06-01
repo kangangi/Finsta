@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +16,10 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <script src="https://use.fontawesome.com/9be72edf7a.js"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Handlee&family=Pacifico&family=Sacramento&family=Staatliches&display=swap" rel="stylesheet">
     {% endblock %}
 
 </head>
