@@ -1,6 +1,6 @@
 # Finsta-Gram
 ### Author
-Marvin Chomba Kangangi
+Diana Kangangi
 
 ## Description
 A clone of the website for the desktop version for the popular app, Instagram.
