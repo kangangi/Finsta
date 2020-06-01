@@ -37,7 +37,7 @@ The user will require git, django, postgres and python3.8 installed in their mac
 ``` pip install django```
 
 4. postgres
-```$ sudo apt-get install postgresql postgresql-contrib libpq-dev```
+```$ sudo apt-get install postgresql postgresql-contrib```
 
 ### Installation
 1. To access this application on your command line, you need to clone it. Run :```git clone https://github.com/kangangi/finsta.git```
