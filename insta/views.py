@@ -28,7 +28,8 @@ def profile(request):
     current_user = request.user
     profile = Profile.objects.get(user =current_user)
     images = Image.get_profile_images(current_user)
-    return render(request, 'profile.html', {"profile" : profile, "images":images} )
+    posts = images.count()
+    return render(request, 'profile.html', {"profile" : profile, "images":images, "posts": posts} )
 
 @login_required
 def upload_image(request):
@@ -70,7 +71,8 @@ def search_profile(request, user):
     title = "Profile"
     profile = Profile.objects.get(user =user)
     images = Image.get_profile_images(user)
-    return render(request, 'search_profile.html', {"profile" : profile, "images":images} )
+    posts = images.count()
+    return render(request, 'search_profile.html', {"profile" : profile, "images":images, "posts": posts} )
 
 
 def add_comment(request,id):

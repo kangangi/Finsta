@@ -8,7 +8,8 @@
             <img style="width:200px; height:200px;object-fit: cover; margin-right: 10px; border-radius: 50%; "
                 src="{{profile.profile_pic.url}}" alt="">
             {% else %}
-            <img style="width:200px; height:200px;object-fit: cover;border-radius: 50%;" src="../../media/images/avartar.png" alt="">
+            <img style="width:200px; height:200px;object-fit: cover;border-radius: 50%;"
+                src="../../media/images/avartar.png" alt="">
             {% endif %}
             <br>
         </div>
@@ -22,7 +23,8 @@
             {% endif %}
         </div>
     </div>
-
+    <hr>
+    <p class= "text-center">Posts: {{posts}}</p>
     <hr>
     <div id="image-list">
         {% if images %}
@@ -34,7 +36,7 @@
         </div>
         {% endfor %}
         {% else %}
-        <p class= "text-center">No images posted yet</p>
+        <p class="text-center">No images posted yet</p>
         {% endif %}
     </div>
 </div>
