@@ -21,15 +21,16 @@
 </head>
 
 <body>
+    {% include "navbar.html"%}
     <div class="container">
 
-    <h1>Update your profile </h1>
+    <h1 class="text-center" style ="padding-top:50px;">Update your profile </h1>
 
     <form action="{%url 'edit_profile'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
 
         {% bootstrap_form form%}
-        <input type="submit" class="btn btn-success btn-lg" value="Update">
+        <input type="submit" class="btn btn-light btn-lg" value="Update">
     </form>
 
     {% block scripts %}

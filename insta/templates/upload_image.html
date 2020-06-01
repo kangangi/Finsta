@@ -21,14 +21,16 @@
 </head>
 
 <body>
+    {% include "navbar.html"%}
 <div class ="container">
-    <h1> Upload Image to Feed </h1>
+    
+    <h1 style ="padding-top:50px;"class= "text-center"> Upload Image to Feed </h1>
 
     <form action="{%url 'upload_image'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
 
         {% bootstrap_form form%}
-        <input type="submit" class="btn btn-outline-success " value=" Add image">
+        <input type="submit" class="btn btn-light " value=" Add image">
     </form>
 
     {% block scripts %}

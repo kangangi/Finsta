@@ -1,60 +1,67 @@
 {% extends 'base.html'%}
 {% block content %}
 <div class="container">
+    <br><br>
     <div class="row">
         <div class="col-md-6">
 
             <div class="card" style="width:500px;">
-                <img class="card-img-top"
-                    style="width:500px; height:500px;object-fit: cover;border: 5px solid black;padding: 10px;"
+                <img class="card-img" style="width:500px; height:500px;object-fit: cover;border: 5px solid #774936;"
                     src="{{image.image.url}}" alt="">
-                <br><br>
                 <div class=" card-footer">
-                    <form role="add_comment" , action="{% url 'add_comment' image.id %}">
-                        {% csrf_token%}
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Comment" name="comment">
-                            <div class="input-group-btn">
-                                <button class="btn btn-outline-info" type="submit"> Post</button>
+                    <div class="row">
+                        <div class="col-md-2">
+                            {% if liked %}
+                            <form action="{% url 'like_image' image.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="image_id" value={{image.id}} class="btn btn-danger btn-sm">
+                                    Unlike</button>
+                            </form>
+                            {% else %}
 
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <h2> {{image.profile}} </h2>
-            <hr>
-            <p>{{image.caption}}</p>
-            
-                    {% if liked %}
-                    <form action="{% url 'like_image' image.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="image_id" value={{image.id}} class="btn btn-danger btn-sm">
-                            Unlike</button>
-                    </form>
-                    {% else %}
-
-                    <form action="{% url 'like_image' image.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="image_id" value={{image.id}} class="btn btn-success btn-sm" ">
+                            <form action="{% url 'like_image' image.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="image_id" value={{image.id}} class="btn btn-success btn-sm" ">
                             Like </button>
 
                     </form>
                     {% endif %}
-                
-                    <p> {{total_likes}} likes  </p>
-            
+                    </div>
+                    <div class=" col-md-10">
+
+                                    <form role="add_comment" , action="{% url 'add_comment' image.id %}">
+                                        {% csrf_token%}
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Comment"
+                                                name="comment">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-dark" type="submit"> Post</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2> Posted by: {{image.profile}} </h2>
+            <p class="text-muted" style="font-size: 15px;"> {{image.pub_date | timesince}} ago </p>
+            <hr>
+            <p>Caption: {{image.caption}}</p>
+            <p>Likes: {{total_likes}}  </p>
+
             <hr>
 
-            <h4>Comments</h4>
+
+            <h4 style ="text-align: center; color:#774936; font-size: 30px; font-family:'Chelsea Market', cursive;  ;">Comments</h4>
             {% for comment in comments %}
-            <h6 style="font-size: 20px; color: darkgreen;"><i class="fa fa-user" aria-hidden="true">
+            <h6 style="font-size: 20px; color:#774936;"><i class="fa fa-user" aria-hidden="true">
                     {{comment.user}}</i></h6>
             <p>{{comment.content}}</p>
 
-            <p class="text-muted" style="font-size: 10px;">posted {{comment.pub_date | timesince}} ago </p>
+            <p class="text-muted" style="font-size: 15px;">posted {{comment.pub_date | timesince}} ago </p>
             <hr>
             {% endfor %}
 

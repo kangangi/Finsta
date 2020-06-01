@@ -2,20 +2,23 @@
 {% block content %}
 <div class="container">
     {% if profile %}
+    <br>
+    <p style ="text-align: center; color:#774936; font-size: 30px; font-family:'Chelsea Market', cursive;">Found {{profile | length}} account(s)</p>
     {% for prof in profile %}
-    <div class="card" style="width: 18rem;display: flex;
+    <div class="card" style="width: 30rem;display: flex;
     margin: 0 auto;">
-        <img class="card-img-top" style="width: 18rem;object-fit:cover;" src="{prof.profile_pic.url}}"alt="">
-        <div class="card-body">
+        <!-- <img class="card-img" style="object-fit:cover;" src="{prof.profile_pic.url}}" alt=""> -->
+        <div style= "margin: 50px; padding: 20px;"class="card-body">
+
             <h6 class="card-text" style="font-size: 25px;"><i class="fa fa-user" aria-hidden="true">
                     {{prof.username}}</i></h6>
             <br>
-            <a class="card-link" style="font-size: 20px;" href="{%url 'search_profile' prof.id %}">
-                <h4>View profile</h4>
-            </a>
-            <hr>
-        </div>
-    </div>
+           
+        
+            <button class="btn btn-dark"><a  style=color:white;" href="{%url 'search_profile' prof.id %}">View Profile</a></button>
+               </div></div> 
+            
+           <hr> 
 
     {% endfor %}
     {% else %}

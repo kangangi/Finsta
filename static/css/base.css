@@ -15,7 +15,12 @@
 }
 
 body{
-    background-color: white;
+    /* background: url("/media/images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+    background-color: #E7D8C9;
+    
     font-family: 'Reem Kufi', sans-serif;
     color: black;
     font-size : 25px;
@@ -24,7 +29,7 @@ h1{
     font-family: 'Chelsea Market', cursive;  
     font-size: 40px;
     font-weight: bold;
-    color: #C03221;
+    color: #8A5A44;
 }
 .profile{
     margin: 0 auto;

@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
 <div class="container">
+   <br><br>
     <div class="row">
     <div class="col-md-3">
         {% if profile.profile_pic %}
@@ -18,7 +19,7 @@
         {% else %}
         <p>Hey there, I am an Finsta-gram user User</p>
         {% endif %}
-        <button class = "btn btn-outline-success btn-lg"><a href="{% url 'edit_profile' %}">Edit Profile</a></button>
+        <button class = "btn btn-light btn-lg"><a style="color: black;"href="{% url 'edit_profile' %}">Edit Profile</a></button>
 
     </div></div>
 
@@ -28,7 +29,7 @@
         {% for image in images %}
         <div class="col-xs-6 col-md-4 col-sm-6 col-lg-4">
             <a href="{% url 'image_details' image.id%}"><img class="image img-responsive"
-                    style="width:350px; height:350px;object-fit: cover;padding:10px;" src="{{image.image.url}}"
+                    style="width:350px; height:350px;object-fit: cover;margin:5px; border:3px solid white" src="{{image.image.url}}"
                     alt=""></a>
         </div>
         {% endfor %}

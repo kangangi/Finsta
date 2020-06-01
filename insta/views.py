@@ -149,3 +149,4 @@ def add_comment_homepage(request,id):
     comment.save_comment()
 
     return redirect('home')
+
