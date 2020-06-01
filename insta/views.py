@@ -54,10 +54,13 @@ def user_search(request):
     if "user" in request.GET and request.GET["user"]:
         searched_user = request.GET.get("user")
         profile = Profile.search_user(searched_user)
+        message =f"{searched_user}"
        
-        print(profile)
         
-        return render(request, 'search.html', {"profile": profile})
+        return render(request, 'search.html', {"profile": profile,"message": message})
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html', {"message": message}) 
 
 def search_profile(request, user):
     '''
