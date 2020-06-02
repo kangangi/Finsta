@@ -25,17 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 # # development
 # if config('MODE')=="dev":
-DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USERNAME': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-       }
-       
-   }
+
 # production
 # else:
 #    DATABASES = {
@@ -99,15 +89,17 @@ WSGI_APPLICATION = 'finsta.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'finsta',
-        'USER': 'diana',
-        'PASSWORD':'12345',
-    }
-}
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USERNAME': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+       }
+       
+   }
 
 
 # Password validation
